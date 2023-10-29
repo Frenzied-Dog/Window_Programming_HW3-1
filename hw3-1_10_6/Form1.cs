@@ -9,87 +9,87 @@ namespace hw3_1_10_6 {
 
         bool result = false;
         readonly Random random = new();
-        readonly String[] analysis = { 
-            "®çªá¹B¤jº¦", 
-            "®a®x¾D³{ÅÜ¬G", 
-            "¨Æ·~¥­¨B«C¶³¡A¦³¤É©x¥i¯à", 
-            "¨Æ·~°_¥ñ¤j", 
-            "¿Ë¤H¯f±¡¦nÂà", 
-            "³Q°]¯«²²ÅU",
-            "ªñ´Á¤@¦|­·¶¶" };
+        readonly String[] analysis = {
+            "æ¡ƒèŠ±é‹å¤§æ¼²",
+            "å®¶åº­é­é€¢è®Šæ•…",
+            "äº‹æ¥­å¹³æ­¥é’é›²ï¼Œæœ‰å‡å®˜å¯èƒ½",
+            "äº‹æ¥­èµ·ä¼å¤§",
+            "è¦ªäººç—…æƒ…å¥½è½‰",
+            "è¢«è²¡ç¥çœ·é¡§",
+            "è¿‘æœŸä¸€å¸†é¢¨é †" };
 
-        readonly String[] suggest = { 
-            "¤Ö°µÃa¨Æ¡A©]¸ô¨«¦h¤FÁ`¶×¤T©úªv",
-            "«O«ùÁ¾µê¡A¤@¤sÁÙ¦³¤@¤s°ª¡AÂû³JÁÙ¦³Âû³J¿|",
-            "µ½«İ¥L¤H¡A¤£­n¥ô·N¼J¯º§O¤H¡A°£«D§A§Ô¤£¦í",
-            "¦­ÂIºÎÄ±¡A¤£­n¥MµÛ¦Û¤vªø±oÁà¡A´N¥ô·N¼õ©]",
-            "¤p¤ß¤p¤H¡A¥i¿×¯B¶³¯à½ª¤é¡A»´¦à¤w¹L¸U­«¤s",
-            "¤£­n°½Ãi¡A§A¦bºÎÄ±ªº®É­Ô¡A¬ü°ê¤HÁÙ¦b¤W¯Zªü",
-            "°·±d²Ä¤@¡A©w´Á¨­ÅéÀË¬d¨ÃÂÔ°OÂå¥Í«ç»ò»¡¡Adoctor!",
-            "Ã­©w±¡ºü¡A¤µ¤Ñ¤£¶}¤ß¨SÃö«Y¡A¤Ï¥¿©ú¤Ñ¤]¤£·|¶}¤ß" };
+        readonly String[] suggest = {
+            "å°‘åšå£äº‹ï¼Œå¤œè·¯èµ°å¤šäº†ç¸½åŒ¯ä¸‰æ˜æ²»",
+            "ä¿æŒè¬™è™›ï¼Œä¸€å±±é‚„æœ‰ä¸€å±±é«˜ï¼Œé›è›‹é‚„æœ‰é›è›‹ç³•",
+            "å–„å¾…ä»–äººï¼Œä¸è¦ä»»æ„å˜²ç¬‘åˆ¥äººï¼Œé™¤éä½ å¿ä¸ä½",
+            "æ—©é»ç¡è¦ºï¼Œä¸è¦ä»—è‘—è‡ªå·±é•·å¾—é†œï¼Œå°±ä»»æ„ç†¬å¤œ",
+            "å°å¿ƒå°äººï¼Œå¯è¬‚æµ®é›²èƒ½è”½æ—¥ï¼Œè¼•èˆŸå·²éè¬é‡å±±",
+            "ä¸è¦å·æ‡¶ï¼Œä½ åœ¨ç¡è¦ºçš„æ™‚å€™ï¼Œç¾åœ‹äººé‚„åœ¨ä¸Šç­é˜¿",
+            "å¥åº·ç¬¬ä¸€ï¼Œå®šæœŸèº«é«”æª¢æŸ¥ä¸¦è¬¹è¨˜é†«ç”Ÿæ€éº¼èªªï¼Œdoctor!",
+            "ç©©å®šæƒ…ç·’ï¼Œä»Šå¤©ä¸é–‹å¿ƒæ²’é—œä¿‚ï¼Œåæ­£æ˜å¤©ä¹Ÿä¸æœƒé–‹å¿ƒ" };
 
         //readonly List<string> analysis = new() {
-        //    "¦³¤£¤ÖÂ¾³õ¬ÛÃöªº¬D¾Ô¦bµ¥µÛ§A",
-        //    "ª÷¬P°f¦æ¡A¼vÅT¨ì§Aªº°]°Èª¬ªp",
-        //    "§Aµo²{§Aªº°]¹B©úÅãÂà¦n",
-        //    "§A®É¨è³£¯à¨N¯D¦b²¢¬üªº·R±¡¤§¤¤",
-        //    "§AÄ±±o¦Û¤vªº§V¤O»P¦^³ø¤£¦¨¥¿¤ñ",
-        //    "¦p¦ó¥­½Ä¬ù·|®É¶¡»P¤u§@®É¶¡¤@ª½¥O§A­W´o",
-        //    "§A¹ï¦Û¤v­n¨D°ªªº¦P®É¡A¹ï§O¤H¤]©ê¦³·¥°ªªº­n¨D",
-        //    "Â¾³õ¤¤¤@­Ó±µ¤@­Óªº¾÷·|¥O§A¤£¯Ê®i²{¹ê¤Oªº®É¾÷",
-        //    "¤@¨Ç¦­¤w¼çÂÃ¨­Åé¤ºªº¤ò¯f¡BÂÂ±w¥¿¦ø¾÷¦Ó°Ê",
-        //    "Â¾³õ¦ü¥GÁ`¬O¦b¬D¾Ô§Aªº©³½u"
+        //    "æœ‰ä¸å°‘è·å ´ç›¸é—œçš„æŒ‘æˆ°åœ¨ç­‰è‘—ä½ ",
+        //    "é‡‘æ˜Ÿé€†è¡Œï¼Œå½±éŸ¿åˆ°ä½ çš„è²¡å‹™ç‹€æ³",
+        //    "ä½ ç™¼ç¾ä½ çš„è²¡é‹æ˜é¡¯è½‰å¥½",
+        //    "ä½ æ™‚åˆ»éƒ½èƒ½æ²æµ´åœ¨ç”œç¾çš„æ„›æƒ…ä¹‹ä¸­",
+        //    "ä½ è¦ºå¾—è‡ªå·±çš„åŠªåŠ›èˆ‡å›å ±ä¸æˆæ­£æ¯”",
+        //    "å¦‚ä½•å¹³è¡ç´„æœƒæ™‚é–“èˆ‡å·¥ä½œæ™‚é–“ä¸€ç›´ä»¤ä½ è‹¦æƒ±",
+        //    "ä½ å°è‡ªå·±è¦æ±‚é«˜çš„åŒæ™‚ï¼Œå°åˆ¥äººä¹ŸæŠ±æœ‰æ¥µé«˜çš„è¦æ±‚",
+        //    "è·å ´ä¸­ä¸€å€‹æ¥ä¸€å€‹çš„æ©Ÿæœƒä»¤ä½ ä¸ç¼ºå±•ç¾å¯¦åŠ›çš„æ™‚æ©Ÿ",
+        //    "ä¸€äº›æ—©å·²æ½›è—èº«é«”å…§çš„æ¯›ç—…ã€èˆŠæ‚£æ­£ä¼ºæ©Ÿè€Œå‹•",
+        //    "è·å ´ä¼¼ä¹ç¸½æ˜¯åœ¨æŒ‘æˆ°ä½ çš„åº•ç·š"
         //};
         //readonly List<string> suggest = new() {
-        //    "ª`·N¶¼­¹¡A¤~Á×§K¤@³õ¤S¤@³õªº¯fµh",
-        //    "¦h°Ñ¥[»E·|»P¬¡°Ê¡A¦³§U©ó²æ³æ¦¨¥\",
-        //    "¤£­n«æµÛ¶}©l¤@¬q·sÃö«Y",
-        //    "¤£­n¦]¦Ó®ğ¾k¦Ó°±¤î¡A¥u­n°µ¦n¥»¤À¡AÄİ©ó§Aªº¦^³ø¤@©w·|¥X²{",
-        //    "¦bÂ¾³õ¤W­nºÉ¶qÀ£¤U¦Û¤vªº®ğµK¡AÁ×§K»P¦P¨Æª§§n",
-        //    "¾A®É©ñÃP¨ÃµÎ®i¨­¤ß¡A¤~¯à°·±d±`¾n",
-        //    "ªáÂI®É¶¡ºCºC¤F¸Ñ¹ï¤è¡A§O¤@¤£¯d¯«»~´¡¨¬¨ì§O¤Hªº·P±¡¤§¤¤",
-        //    "«O«ù¤@Áû¼ÖÆ[ªº¤ß¡A¤Å¥[­«¤ß²z­t¾á",
-        //    "ÂÔ·V®ø¶O¡AÁÈ¦h¤F¤]¤£¥Nªí­nªá±o§ó¦h",
-        //    "ÀËµø¤@¤U¦Û¤vªº®zÂI¡A±N¨ä±j¤Æ¬°·sªº§Ş¯à"
+        //    "æ³¨æ„é£²é£Ÿï¼Œæ‰é¿å…ä¸€å ´åˆä¸€å ´çš„ç—…ç—›",
+        //    "å¤šåƒåŠ èšæœƒèˆ‡æ´»å‹•ï¼Œæœ‰åŠ©æ–¼è„«å–®æˆåŠŸ",
+        //    "ä¸è¦æ€¥è‘—é–‹å§‹ä¸€æ®µæ–°é—œä¿‚",
+        //    "ä¸è¦å› è€Œæ°£é¤’è€Œåœæ­¢ï¼Œåªè¦åšå¥½æœ¬åˆ†ï¼Œå±¬æ–¼ä½ çš„å›å ±ä¸€å®šæœƒå‡ºç¾",
+        //    "åœ¨è·å ´ä¸Šè¦ç›¡é‡å£“ä¸‹è‡ªå·±çš„æ°£ç„°ï¼Œé¿å…èˆ‡åŒäº‹çˆ­åµ",
+        //    "é©æ™‚æ”¾é¬†ä¸¦èˆ’å±•èº«å¿ƒï¼Œæ‰èƒ½å¥åº·å¸¸é§",
+        //    "èŠ±é»æ™‚é–“æ…¢æ…¢äº†è§£å°æ–¹ï¼Œåˆ¥ä¸€ä¸ç•™ç¥èª¤æ’è¶³åˆ°åˆ¥äººçš„æ„Ÿæƒ…ä¹‹ä¸­",
+        //    "ä¿æŒä¸€é¡†æ¨‚è§€çš„å¿ƒï¼Œå‹¿åŠ é‡å¿ƒç†è² æ“”",
+        //    "è¬¹æ…æ¶ˆè²»ï¼Œè³ºå¤šäº†ä¹Ÿä¸ä»£è¡¨è¦èŠ±å¾—æ›´å¤š",
+        //    "æª¢è¦–ä¸€ä¸‹è‡ªå·±çš„å¼±é»ï¼Œå°‡å…¶å¼·åŒ–ç‚ºæ–°çš„æŠ€èƒ½"
         //};
 
         private void Button_Click(object sender, EventArgs e) {
             if (!result) {
                 bool passed = true;
                 if (string.IsNullOrWhiteSpace(NameTextBox.Text)) {
-                    NameLabel2.Text = "¦¹Äæ¥¼¶ñ¼g"; passed = false;
+                    NameLabel2.Text = "æ­¤æ¬„æœªå¡«å¯«"; passed = false;
                 } else NameLabel2.Text = "";
 
                 if (string.IsNullOrWhiteSpace(GenderTextBox.Text)) {
-                    GenderLabel2.Text = "¦¹Äæ¥¼¶ñ¼g"; passed = false;
-                } else if (!GenderTextBox.Text.Equals("¨k") && !GenderTextBox.Text.Equals("¤k")) {
-                    GenderLabel2.Text = "¿é¤JÀ³¬°¨kor¤k"; passed = false;
+                    GenderLabel2.Text = "æ­¤æ¬„æœªå¡«å¯«"; passed = false;
+                } else if (!GenderTextBox.Text.Equals("ç”·") && !GenderTextBox.Text.Equals("å¥³")) {
+                    GenderLabel2.Text = "è¼¸å…¥æ‡‰ç‚ºç”·orå¥³"; passed = false;
                 } else GenderLabel2.Text = "";
 
                 if (string.IsNullOrWhiteSpace(BirthTextBox.Text)) {
-                    BirthLabel2.Text = "¦¹Äæ¥¼¶ñ¼g"; passed = false;
+                    BirthLabel2.Text = "æ­¤æ¬„æœªå¡«å¯«"; passed = false;
                 } else BirthLabel2.Text = "";
 
                 if (string.IsNullOrWhiteSpace(DateTextBox.Text)) {
-                    DateLabel2.Text = "¦¹Äæ¥¼¶ñ¼g"; passed = false;
+                    DateLabel2.Text = "æ­¤æ¬„æœªå¡«å¯«"; passed = false;
                 } else DateLabel2.Text = "";
 
                 if (string.IsNullOrWhiteSpace(CdTextBox.Text)) {
-                    CdLabel2.Text = "¦¹Äæ¥¼¶ñ¼g"; passed = false;
-                } else if (!CdTextBox.Text.Equals("¿ß") && !CdTextBox.Text.Equals("ª¯")) {
-                    CdLabel2.Text = "¿é¤JÀ³¬°¿ßorª¯"; passed = false;
+                    CdLabel2.Text = "æ­¤æ¬„æœªå¡«å¯«"; passed = false;
+                } else if (!CdTextBox.Text.Equals("è²“") && !CdTextBox.Text.Equals("ç‹—")) {
+                    CdLabel2.Text = "è¼¸å…¥æ‡‰ç‚ºè²“orç‹—"; passed = false;
                 } else CdLabel2.Text = "";
 
                 if (passed) {
                     result = true;
-                    Title.Text = "¯«¿Ù®É¨è";
+                    Title.Text = "ç¥è«­æ™‚åˆ»";
 
                     NameLabel2.Text = NameTextBox.Text;
                     GenderLabel2.Text = GenderTextBox.Text;
                     BirthLabel2.Text = BirthTextBox.Text;
                     DateLabel2.Text = DateTextBox.Text;
                     CdLabel2.Text = CdTextBox.Text;
-                    Button.Text = "¨Ó¡A¤U­±¤@¦ì~~";
+                    Button.Text = "ä¾†ï¼Œä¸‹é¢ä¸€ä½~~";
 
                     NameTextBox.Text = "";
                     NameTextBox.Hide(); //Visible = false;
@@ -114,13 +114,13 @@ namespace hw3_1_10_6 {
                     CdLabel2.Location = new Point(640, 150);
 
                     AnaLabel.Show(); //Visible = true;
-                    AnaLabel.Text = $"¹B¶Õ: {analysis[random.Next(analysis.Length)]}";
+                    AnaLabel.Text = $"é‹å‹¢: {analysis[random.Next(analysis.Length)]}";
                     SugLabel.Show(); //Visible = true;
-                    SugLabel.Text = $"«ØÄ³: {suggest[random.Next(suggest.Length)]}";
+                    SugLabel.Text = $"å»ºè­°: {suggest[random.Next(suggest.Length)]}";
                 }
             } else {
                 result = false;
-                Title.Text = "¸ê®Æ¿é¤J";
+                Title.Text = "è³‡æ–™è¼¸å…¥";
 
                 NameTextBox.Show(); //Visible = true;
                 GenderTextBox.Show(); //Visible = true;
@@ -146,7 +146,7 @@ namespace hw3_1_10_6 {
 
                 AnaLabel.Hide(); //Visible = false;
                 SugLabel.Hide(); //Visible = false;
-                Button.Text = "AI¤j¯«½Ğ§i¶D§Úµª®×§a";
+                Button.Text = "AIå¤§ç¥è«‹å‘Šè¨´æˆ‘ç­”æ¡ˆå§";
             }
         }
     }
